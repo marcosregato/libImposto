@@ -1,6 +1,5 @@
 package impostoMunicipal;
 
-import interfaceImposto.ImpostoFederalInterface;
 import interfaceImposto.ImpostoMunicipalInterface;
 
 public class ImpMunicipal implements ImpostoMunicipalInterface{

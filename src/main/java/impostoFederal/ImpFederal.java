@@ -1,6 +1,5 @@
 package impostoFederal;
 
-import interfaceImposto.ImpostoEstadualInterface;
 import interfaceImposto.ImpostoFederalInterface;
 
 public class ImpFederal implements ImpostoFederalInterface{
