@@ -2,19 +2,19 @@ package interfaceImposto;
 
 public interface ImpostoFederalInterface {
 
-    public Float impostoII(Float valor);
+    public float impostoImpotacao(float valorAduaneiro, float aliquotaImportacao);
 
-    public Float impostoIpi(Float valor);
+    public float impostoIpi(float baseCalculo,float aliquotaIPI);
 
-    public Float impostoIrpf(Float valor);
+    public float impostoIrpf(float valor);
 
-    public Float impostoIrpj(Float valor);
+    public float impostoIrpj(float valor);
 
-    public Float impostoConfins(Float valor);
+    public float impostoConfins(float valor);
 
-    public Float impostoPisPasep(Float valor);
+    public float impostoPisPasep(float valor);
 
-    public Float impostoCsll(Float valor);
-    public Float impostoInss(Float valor);
+    public float impostoCsll(float valor);
+    public float impostoInss(float valor);
 
 }

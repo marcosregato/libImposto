@@ -2,9 +2,9 @@ package interfaceImposto;
 
 public interface ImpostoEstadualInterface {
 
-    public Float impostoIcms(Float valor);
-    public Float impostoIpva(Float valor);
-    public Float impostoItcmd(Float valor);
+    public float impostoIcms(float valorOperacao, float aliquotaIcms);
+    public float impostoIpva(float valorVeiculo, float porcentagemEstado);
+    public float impostoItcmd(float baseCalculo, float aliquota);
 
 
 
