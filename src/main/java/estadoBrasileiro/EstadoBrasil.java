@@ -8,6 +8,7 @@ public enum EstadoBrasil {
     AMAZONAS,
     BAHIA,
     CEARA,
+    DISTRITO_FEDERAL,
     ESPIRITO_SANTO,
     GOIAS,
     MARANHAO,

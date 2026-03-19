@@ -17,31 +17,31 @@ public class ImpFederal implements ImpostoFederalInterface{
 
     @Override
     public float impostoIrpf(float valor) {
-        return 0;
+        return 0f;
     }
 
     @Override
     public float impostoIrpj(float valor) {
-        return 0;
+        return 0f;
     }
 
     @Override
     public float impostoConfins(float valor) {
-        return 0;
+        return 0f;
     }
 
     @Override
     public float impostoPisPasep(float valor) {
-        return 0;
+        return 0f;
     }
 
     @Override
     public float impostoCsll(float valor) {
-        return 0;
+        return 0f;
     }
 
     @Override
     public float impostoInss(float valor) {
-        return 0;
+        return 0f;
     }
 }
