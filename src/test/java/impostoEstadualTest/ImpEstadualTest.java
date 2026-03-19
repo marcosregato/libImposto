@@ -86,4 +86,23 @@ public class ImpEstadualTest {
         float result = impEstadual.impostoItcmd(baseCalculo, aliquota);
         assertEquals("O cálculo do ITCMD está incorreto", expected, result, 0.001);
     }
+
+    @Test
+    public void testImpostoItcmdProgressivo() {
+        float baseCalculo = 600000.0f;
+        // Limites superiores das faixas
+        float[] limites = {100000f, 500000f};
+        // Alíquotas: até 100k (2%), 100k-500k (4%), acima de 500k (6%)
+        float[] aliquotas = {0.02f, 0.04f, 0.06f};
+
+        // Cálculo esperado:
+        // 1. 100.000 * 0.02 = 2.000
+        // 2. 400.000 * 0.04 = 16.000
+        // 3. 100.000 * 0.06 = 6.000
+        // Total = 24.000
+        float expected = 24000.0f;
+
+        float result = impEstadual.impostoItcmdProgressivo(baseCalculo, limites, aliquotas);
+        assertEquals("O cálculo do ITCMD progressivo está incorreto", expected, result, 0.001);
+    }
 }

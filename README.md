@@ -32,3 +32,6 @@ onde a alíquota interna é de 18% (0,18).
 #### R 219,51, e o valor total da operação é R 1.219,51.
 
 --------
+
+
+crie os métodos para imposto Irpj, confins, Pis Passep, cstll e inss
