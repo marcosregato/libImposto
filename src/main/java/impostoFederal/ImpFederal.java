@@ -22,63 +22,96 @@ public class ImpFederal implements ImpostoFederalInterface{
     }
 
     @Override
-    public float impostoIrpf(float valor) {
-        return 0f;
-    }
+    public float impostoIrpf(float valor) { return 0f; }
 
     @Override
     public float impostoIrpf(float baseCalculo, float aliquota, float deducao) {
-        float impostoBruto = baseCalculo * aliquota;
-        // O imposto não pode ser negativo
-        return Math.max(0, impostoBruto - deducao);
+        return Math.max(0, (baseCalculo * aliquota) - deducao);
     }
 
-    /**
-     * Calcula o IRPF com base na tabela progressiva.
-     * @param baseCalculo Base de cálculo do imposto.
-     * @param limites Array com os limites superiores de cada faixa. Ex: {2112.00f, 2826.65f...}
-     * @param aliquotas Array com as alíquotas. Deve ter tamanho limites.length + 1.
-     * @param deducoes Array com as parcelas a deduzir. Deve ter tamanho limites.length + 1.
-     * @return Valor do IRPF a pagar.
-     */
     @Override
     public float impostoIrpf(float baseCalculo, float[] limites, float[] aliquotas, float[] deducoes) {
         if (aliquotas.length != limites.length + 1 || deducoes.length != limites.length + 1) {
-            throw new IllegalArgumentException("Os arrays de alíquotas e deduções devem ter um elemento a mais que o array de limites.");
+            throw new IllegalArgumentException("Arrays de alíquotas/deduções devem ter um elemento a mais que o de limites.");
         }
-
         for (int i = 0; i < limites.length; i++) {
             if (baseCalculo <= limites[i]) {
                 return impostoIrpf(baseCalculo, aliquotas[i], deducoes[i]);
             }
         }
-        
-        // Se ultrapassou todos os limites, cai na última faixa
         return impostoIrpf(baseCalculo, aliquotas[aliquotas.length - 1], deducoes[aliquotas.length - 1]);
     }
 
     @Override
-    public float impostoIrpj(float valor) {
-        return 0f;
+    public float impostoIrpj(float valor) { return 0f; }
+    
+    @Override
+    public float impostoIrpj(float baseCalculo, float aliquota) {
+        return baseCalculo * aliquota;
     }
 
     @Override
-    public float impostoConfins(float valor) {
-        return 0f;
+    public float impostoConfins(float valor) { return 0f; }
+
+    @Override
+    public float impostoConfins(float baseCalculo, float aliquota) {
+        return baseCalculo * aliquota;
     }
 
     @Override
-    public float impostoPisPasep(float valor) {
-        return 0f;
+    public float impostoPisPasep(float valor) { return 0f; }
+
+    @Override
+    public float impostoPisPasep(float baseCalculo, float aliquota) {
+        return baseCalculo * aliquota;
     }
 
     @Override
-    public float impostoCsll(float valor) {
-        return 0f;
+    public float impostoCsll(float valor) { return 0f; }
+
+    @Override
+    public float impostoCsll(float baseCalculo, float aliquota) {
+        return baseCalculo * aliquota;
     }
 
     @Override
-    public float impostoInss(float valor) {
-        return 0f;
+    public float impostoInss(float valor) { return 0f; }
+
+    @Override
+    public float impostoInss(float salario, float aliquota) {
+        return salario * aliquota;
+    }
+
+    @Override
+    public float impostoInss(float salario, float[] limites, float[] aliquotas) {
+        if (aliquotas.length != limites.length + 1) {
+            throw new IllegalArgumentException("O array de alíquotas deve ter um elemento a mais que o de limites.");
+        }
+
+        float impostoTotal = 0.0f;
+        float baseRestante = salario;
+        float limiteAnterior = 0.0f;
+
+        for (int i = 0; i < limites.length; i++) {
+            float limiteAtual = limites[i];
+            float faixaTamanho = limiteAtual - limiteAnterior;
+
+            if (baseRestante <= 0) break;
+
+            if (baseRestante > faixaTamanho) {
+                impostoTotal += faixaTamanho * aliquotas[i];
+                baseRestante -= faixaTamanho;
+            } else {
+                impostoTotal += baseRestante * aliquotas[i];
+                baseRestante = 0;
+            }
+            limiteAnterior = limiteAtual;
+        }
+
+        if (baseRestante > 0) {
+            impostoTotal += baseRestante * aliquotas[aliquotas.length - 1];
+        }
+
+        return impostoTotal;
     }
 }
