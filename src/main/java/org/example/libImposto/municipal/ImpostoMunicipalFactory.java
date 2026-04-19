@@ -1,6 +1,7 @@
 package org.example.libImposto.municipal;
 
 import org.example.libImposto.config.ConfiguracaoImpostos;
+import org.example.libImposto.enums.TaxRate;
 
 /**
  * Fábrica para cálculo de impostos municipais brasileiros.
@@ -12,6 +13,6 @@ import org.example.libImposto.config.ConfiguracaoImpostos;
 public class ImpostoMunicipalFactory {
     
     public float calcularISS(float valorBase, ConfiguracaoImpostos config) {
-        return valorBase * 0.02f;
+        return TaxRate.ISS.calcularImposto(valorBase);
     }
 }

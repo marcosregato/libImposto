@@ -1,6 +1,7 @@
 package org.example.libImposto.federal;
 
 import org.example.libImposto.config.ConfiguracaoImpostos;
+import org.example.libImposto.enums.TaxRate;
 
 /**
  * Fábrica para cálculo de impostos federais brasileiros.
@@ -12,22 +13,22 @@ import org.example.libImposto.config.ConfiguracaoImpostos;
 public class ImpostoFederalFactory {
     
     public float calcularIRPJ(float valorBase, ConfiguracaoImpostos config) {
-        return valorBase * 0.15f;
+        return TaxRate.IRPJ.calcularImposto(valorBase);
     }
     
     public float calcularCOFINS(float valorBase, ConfiguracaoImpostos config) {
-        return valorBase * 0.03f;
+        return TaxRate.COFINS.calcularImposto(valorBase);
     }
     
     public float calcularPIS(float valorBase, ConfiguracaoImpostos config) {
-        return valorBase * 0.0065f;
+        return TaxRate.PIS.calcularImposto(valorBase);
     }
     
     public float calcularCSLL(float valorBase, ConfiguracaoImpostos config) {
-        return valorBase * 0.09f;
+        return TaxRate.CSLL.calcularImposto(valorBase);
     }
     
     public float calcularIPI(float valorBase, ConfiguracaoImpostos config) {
-        return valorBase * 0.15f;
+        return TaxRate.IPI.calcularImposto(valorBase);
     }
 }

@@ -1,6 +1,7 @@
 package org.example.libImposto.estadual;
 
 import org.example.libImposto.config.ConfiguracaoImpostos;
+import org.example.libImposto.enums.TaxRate;
 
 /**
  * Fábrica para cálculo de impostos estaduais brasileiros.
@@ -12,14 +13,14 @@ import org.example.libImposto.config.ConfiguracaoImpostos;
 public class ImpostoEstadualFactory {
     
     public float calcularICMS(float valorBase, ConfiguracaoImpostos config) {
-        return valorBase * 0.18f;
+        return TaxRate.ICMS.calcularImposto(valorBase);
     }
     
     public float calcularIPVA(float valorBase, ConfiguracaoImpostos config) {
-        return valorBase * 0.03f;
+        return TaxRate.IPVA.calcularImposto(valorBase);
     }
     
     public float calcularITCMD(float valorBase, ConfiguracaoImpostos config) {
-        return valorBase * 0.04f;
+        return TaxRate.ITCMD.calcularImposto(valorBase);
     }
 }
